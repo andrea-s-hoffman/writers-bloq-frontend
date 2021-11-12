@@ -35,9 +35,9 @@ const StoryList = () => {
       </div>
 
       <FilteredStories stories={filterStoryList()} />
-      <Link to="/public-stories" className="public-link">
+      {/* <Link to="/public-stories" className="public-link">
         View Public Stories
-      </Link>
+      </Link> */}
       <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
         back to top
       </a>

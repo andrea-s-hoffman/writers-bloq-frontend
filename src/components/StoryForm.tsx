@@ -96,6 +96,7 @@ const StoryForm = () => {
       upvotes: 0,
       public: publicSelected,
       author: authorSelect,
+      comments: [],
     };
     await postNewStory(newStory);
     await getUserStories();

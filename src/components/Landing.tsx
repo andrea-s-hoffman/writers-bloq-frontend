@@ -14,14 +14,14 @@ const Landing = () => {
           <div className="logo">logo</div>
           <p className="description">
             {`Howdy!!! Write your next madlibs here with an AI text generator.
-            Please log in — the guest thing doesn't work yet. (WIP)`}
+            Please log in tytyty`}
           </p>
           <button onClick={signInWithGoogle} className="log-in-btn">
             log in
           </button>
-          <Link className="link" to="/public-stories">
+          {/* <Link className="link" to="/public-stories">
             or continue as guest
-          </Link>
+          </Link> */}
         </div>
       ) : (
         <StoryList />
