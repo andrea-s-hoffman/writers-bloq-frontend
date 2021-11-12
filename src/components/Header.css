@@ -1,0 +1,59 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(222, 80, 80);
+  width: 100%;
+  position: fixed;
+  background-color: white;
+}
+
+.Header .user-photo-star {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.Header .sign-in-out-star {
+  position: relative;
+  width: 170px;
+  height: 100px;
+}
+
+.Header .user-photo {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgb(222, 80, 80);
+}
+
+.Header .star-path-left,
+.Header .star-path-right {
+  fill: rgb(222, 80, 80);
+  z-index: 2;
+  stroke: rgb(222, 80, 80);
+}
+.Header .star-path-left {
+  width: 84px;
+  transform: translate(12%, -57%) rotate(-51deg);
+  stroke-width: 0.5px;
+}
+.Header .star-path-right {
+  width: 50px;
+  transform: translate(55%, -10%) rotate(93deg);
+  stroke-width: 1.5px;
+}
+
+.Header .star-path-left,
+.Header .user-photo,
+.Header .star-path-right,
+.Header .user-log-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.Header .user-log-button {
+  transform: translate(-50%, -50%);
+}

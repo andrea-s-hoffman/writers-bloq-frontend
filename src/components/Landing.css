@@ -1,0 +1,31 @@
+.Landing .landing-guest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.Landing .logo {
+  background-color: rgb(222, 80, 80);
+  width: 300px;
+  height: 200px;
+}
+
+.Landing .description {
+  width: 300px;
+  margin: 30px;
+  text-align: center;
+  line-height: 20px;
+}
+
+.Landing .log-in-btn {
+  margin: 15px 0 15px 0;
+}
+
+.Landing .link {
+  width: 100px;
+  text-align: center;
+  line-height: 17px;
+  font-size: 16px;
+}

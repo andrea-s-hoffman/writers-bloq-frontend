@@ -1,0 +1,240 @@
+.StoryForm {
+  padding: 120px 0 0 0;
+}
+
+.StoryForm .back-link {
+  padding: 0 0 0 28px;
+  font-weight: 700;
+}
+
+.StoryForm .title {
+  color: rgb(222, 80, 80);
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+.StoryForm .sm-title {
+  font-size: 16px;
+  margin: 0 28px 0 0;
+  font-weight: 700;
+}
+.StoryForm .bg-title {
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin: 20px 28px;
+}
+
+.StoryForm .flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.StoryForm .flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.StoryForm .story-form {
+  width: 100%;
+}
+
+.StoryForm .second-form {
+  margin: 20px 0;
+}
+
+.StoryForm .label {
+  margin: 0 0 0 28px;
+}
+
+.StoryForm .story-form input {
+  width: 100%;
+  height: 55px;
+  border-radius: 3px;
+  border: 2px solid rgb(222, 80, 80);
+  margin-left: 28px;
+  font-family: "Heebo", sans-serif;
+  font-size: 16px;
+  line-height: 17px;
+}
+
+.StoryForm .submit-btn {
+  background-color: rgb(222, 80, 80);
+  color: white;
+  border-radius: 3px;
+  margin-right: 28px;
+}
+
+.StoryForm .error-msg::placeholder {
+  color: rgb(51, 17, 204);
+  text-align: center;
+  font-family: "Heebo", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: white;
+}
+
+.StoryForm .instructions {
+  width: 80%;
+  margin: 50px 0 0 0;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.StoryForm .title-input {
+  width: 70%;
+  border: none;
+  margin: 10px 0 0 0;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.StoryForm .title-input::placeholder {
+  font-family: "Heebo", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(56, 56, 56);
+}
+
+.StoryForm .enter-title::placeholder {
+  color: rgb(51, 17, 204);
+  font-size: 22px;
+}
+
+.StoryForm .story-build-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.StoryForm .story-container-container {
+  position: relative;
+  width: 80%;
+}
+.StoryForm .story-container {
+  width: 100%;
+  font-family: "Merriweather", serif;
+  padding: 20px;
+  border: none;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  /* border-radius: 10px 0 0 0; */
+}
+
+.StoryForm .story-label,
+.StoryForm .story-reset,
+.StoryForm .story-undo {
+  position: absolute;
+  writing-mode: tb-rl;
+  color: rgb(222, 80, 80);
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.nada {
+  opacity: 50%;
+}
+
+.StoryForm .story-label {
+  top: 20px;
+  left: -30px;
+  transform: rotate(-180deg);
+}
+
+.StoryForm .story-reset {
+  right: -30px;
+  top: 20px;
+}
+
+.StoryForm .story-undo {
+  right: -30px;
+  bottom: 30px;
+}
+
+.StoryForm .fas {
+  transform: rotate(90deg);
+}
+
+.StoryForm .spinner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 2;
+}
+
+.StoryForm .spinner {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.StoryForm .toggle-container {
+  margin: 0 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+
+.StoryForm .toggle-button {
+  width: 50px;
+  background-color: #c4c4c4;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 20px;
+  height: 30px;
+  position: relative;
+}
+
+.StoryForm .dialog-button {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: rgb(51, 17, 204);
+  transition: all 0.3s ease;
+}
+
+.StoryForm .disabled {
+  left: 0;
+}
+
+.StoryForm .publish-container {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+}
+
+.StoryForm .publish-error-msg {
+  position: absolute;
+  bottom: -34px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100vw;
+  text-align: center;
+  color: rgb(51, 17, 204);
+}
+
+.StoryForm .publish-button {
+  border-color: rgb(51, 17, 204);
+  color: rgb(51, 17, 204);
+}
+
+.StoryForm .privacy-selection {
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  font-weight: 700;
+}

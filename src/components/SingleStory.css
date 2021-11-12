@@ -1,0 +1,65 @@
+.SingleStory {
+  border: 2px solid rgb(222, 80, 80);
+  margin: 6px 0;
+  border-radius: 10px;
+  width: 92%;
+}
+
+.SingleStory .story-title {
+  font-family: "Merriweather", serif;
+  color: rgb(53, 53, 59);
+  font-weight: 700;
+  font-size: 24px;
+  padding: 12px;
+}
+
+.SingleStory .title-fav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SingleStory .highlight {
+  margin: 0 12px 6px 12px;
+  font-family: "Merriweather", serif;
+  color: rgb(53, 53, 59);
+  font-weight: 400;
+  font-size: 16px;
+  height: 55px;
+  overflow: hidden;
+  line-height: 18px;
+}
+
+.SingleStory .stats,
+.SingleStory .stats-actions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(222, 80, 80);
+}
+
+.SingleStory .delete,
+.SingleStory .public-private,
+.SingleStory .date {
+  padding: 12px;
+}
+.SingleStory .delete,
+.SingleStory .public-private {
+  cursor: pointer;
+}
+
+.SingleStory .far,
+.SingleStory .fas {
+  font-size: 20px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.SingleStory .far {
+  color: rgb(53, 53, 59);
+}
+
+.SingleStory .fas {
+  color: rgb(222, 80, 80);
+}
