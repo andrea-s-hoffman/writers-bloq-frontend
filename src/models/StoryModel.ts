@@ -1,3 +1,10 @@
+interface CommentModel {
+    cm_author: string,
+    cm_displayName: string,
+    comment: string,
+    date: string
+}
+
 export default interface StoryModel {
     _id?: string;
     uid?: string;
@@ -8,6 +15,7 @@ export default interface StoryModel {
     story: string;
     favorite: boolean;
     upvotes: number;
-    // comments?: CommentModel[];
+    comments?: CommentModel[];
     public: boolean;
+    displayName?: string;
 }

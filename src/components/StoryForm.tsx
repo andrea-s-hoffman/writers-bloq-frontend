@@ -95,7 +95,8 @@ const StoryForm = () => {
       story: story,
       upvotes: 0,
       public: publicSelected,
-      author: authorSelect,
+      author: authorSelect ?? "",
+      displayName: user?.displayName ?? "user didn't have display name",
       comments: [],
     };
     await postNewStory(newStory);
