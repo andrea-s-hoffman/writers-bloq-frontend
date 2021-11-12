@@ -6,7 +6,6 @@ interface CommentModel {
 }
 
 export default interface StoryModel {
-    _id?: string;
     uid?: string;
     author?: string;
     title: string;
