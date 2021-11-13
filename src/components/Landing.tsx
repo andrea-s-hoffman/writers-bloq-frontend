@@ -1,5 +1,5 @@
 import { useContext } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Landing.css";
 import StoryList from "./StoryList";
 import { signInWithGoogle } from "../firebaseConfig";
@@ -7,6 +7,7 @@ import AuthContext from "../context/authContext";
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
+
   return (
     <div className="Landing">
       {!user ? (
@@ -19,9 +20,9 @@ const Landing = () => {
           <button onClick={signInWithGoogle} className="log-in-btn">
             log in
           </button>
-          {/* <Link className="link" to="/public-stories">
+          <Link className="link" to="/public">
             or continue as guest
-          </Link> */}
+          </Link>
         </div>
       ) : (
         <StoryList />

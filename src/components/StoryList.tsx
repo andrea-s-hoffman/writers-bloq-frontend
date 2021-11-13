@@ -1,28 +1,29 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StoryContext from "../context/storyContext";
 import StoryModel from "../models/StoryModel";
-import FilteredStories from "./FilteredStories";
 import FilterForm from "./FilterForm";
+import SingleStory from "./SingleStory";
 import "./StoryList.css";
 
 const StoryList = () => {
   const { userStories } = useContext(StoryContext);
+  const [filteredStories, setFilteredStories] = useState<StoryModel[]>([]);
   const [filter, setFilter] = useState("");
 
-  const filterStoryList = (): StoryModel[] => {
+  useEffect(() => {
     if (filter === "favorite") {
-      return userStories.filter((story) => story.favorite);
+      setFilteredStories([...userStories.filter((story) => story.favorite)]);
     } else if (filter === "public") {
-      return userStories.filter((story) => story.public);
+      setFilteredStories([...userStories.filter((story) => story.public)]);
     } else if (filter === "private") {
-      return userStories.filter((story) => !story.public);
+      setFilteredStories([...userStories.filter((story) => !story.public)]);
     } else if (filter === "old") {
-      return [...userStories.slice().reverse()];
+      setFilteredStories([...userStories.slice().reverse()]);
     } else {
-      return userStories;
+      setFilteredStories(userStories);
     }
-  };
+  }, [filter, userStories]);
 
   return (
     <div className="StoryList">
@@ -33,11 +34,12 @@ const StoryList = () => {
         </Link>
         <FilterForm setFilter={setFilter} />
       </div>
-
-      <FilteredStories stories={filterStoryList()} />
-      {/* <Link to="/public-stories" className="public-link">
+      {filteredStories.map((item, i) => (
+        <SingleStory key={i} story={item} yours={true} />
+      ))}
+      <Link to="/public" className="public-link">
         View Public Stories
-      </Link> */}
+      </Link>
       <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
         back to top
       </a>

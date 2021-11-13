@@ -3,20 +3,22 @@ import StoryModel from "../models/StoryModel";
 
 interface StoryContextModel {
     userStories: StoryModel[];
+    publicStories: StoryModel[];
+    allStories: StoryModel[];
     flipReverseFav: (id: string) => void;
     flipPrivacy: (id: string) => void;
     removeStory: (id: string) => void;
     getUserStories: () => void;
-    //   getTheirStories: () => void;
 }
 
 const defaultValues: StoryContextModel = {
     userStories: [],
+    publicStories: [],
+    allStories: [],
     flipReverseFav: () => { },
     flipPrivacy: () => { },
     removeStory: () => { },
     getUserStories: () => { },
-    //   getTheirStories: () => {},
 };
 
 const StoryContext = createContext(defaultValues);

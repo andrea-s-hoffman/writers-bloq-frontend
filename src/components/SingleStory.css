@@ -19,6 +19,17 @@
   align-items: center;
 }
 
+.SingleStory .display-name {
+  font-family: "Merriweather", serif;
+  font-size: 14px;
+}
+
+.SingleStory .title-name {
+  display: flex;
+  align-items: baseline;
+  color: rgb(53, 53, 59);
+}
+
 .SingleStory .highlight {
   margin: 0 12px 6px 12px;
   font-family: "Merriweather", serif;
@@ -62,4 +73,14 @@
 
 .SingleStory .fas {
   color: rgb(222, 80, 80);
+}
+
+.SingleStory .socials,
+.SingleStory .likes {
+  display: flex;
+  align-items: center;
+}
+
+.SingleStory .comments {
+  padding: 0 12px;
 }

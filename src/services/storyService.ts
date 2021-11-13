@@ -8,6 +8,15 @@ export const getYourStories = async (uid: string): Promise<StoryModel[]> => {
     return response.data;
 }
 
+export const getEveryStory = async (): Promise<StoryModel[]> => {
+    const response = await axios.get(`${baseURL}/all`)
+    return response.data;
+}
+export const getPublicStories = async (): Promise<StoryModel[]> => {
+    const response = await axios.get(`${baseURL}/public/true`)
+    return response.data;
+}
+
 export const postNewStory = async (story: StoryModel): Promise<void> => {
     const response = await axios.post(baseURL!, story);
     return response.data;

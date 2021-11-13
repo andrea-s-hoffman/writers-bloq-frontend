@@ -2,6 +2,8 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import StoryModel from "../models/StoryModel";
 import {
   deleteStory,
+  getEveryStory,
+  getPublicStories,
   getYourStories,
   updateFavorite,
   updatePrivacy,
@@ -16,12 +18,12 @@ interface Props {
 const StoryContextProvider = ({ children }: Props) => {
   const { user } = useContext(AuthContext);
   const [userStories, setUserStories] = useState<StoryModel[]>([]);
-  //   const [publicStories, setPublicStories] = useState<StoryModel[]>([]);
+  const [publicStories, setPublicStories] = useState<StoryModel[]>([]);
+  const [allStories, setAllStories] = useState<StoryModel[]>([]);
 
   const getUserStories = () => {
     getYourStories(user!.uid).then((data) => {
       const newestFirst = data.reverse();
-      // console.log(newestFirst);
       setUserStories(newestFirst);
     });
   };
@@ -45,21 +47,25 @@ const StoryContextProvider = ({ children }: Props) => {
     if (user) {
       getYourStories(user!.uid).then((data) => {
         const newestFirst = data.reverse();
-        // console.log(newestFirst);
         setUserStories(newestFirst);
       });
     }
+    getPublicStories().then((data) => {
+      setPublicStories(data);
+    });
+    getEveryStory().then((data) => setAllStories(data));
   }, [user]);
 
   return (
     <StoryContext.Provider
       value={{
         userStories,
+        publicStories,
+        allStories,
         flipReverseFav,
         removeStory,
         getUserStories,
         flipPrivacy,
-        // getTheirStories,
       }}
     >
       {children}

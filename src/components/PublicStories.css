@@ -1,0 +1,51 @@
+.PublicStories {
+  margin: 0 0 200px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.PublicStories .title {
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgb(222, 80, 80);
+  line-height: 22px;
+  width: 92%;
+  margin-bottom: 10px;
+}
+
+.PublicStories .back-link {
+  padding: 0 0 25px 5px;
+  font-weight: 700;
+  width: 92%;
+  color: rgb(51, 17, 204);
+}
+
+.PublicStories.user,
+.PublicStories .padding {
+  padding: 125px 0 0 0;
+}
+
+.PublicStories .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(222, 80, 80);
+  width: 100%;
+  position: fixed;
+  background-color: white;
+}
+
+.PublicStories .logo,
+.PublicStories .log-in {
+  margin: 20px;
+}
+
+.PublicStories .public-link {
+  margin: 35px 0 0 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 18px;
+}

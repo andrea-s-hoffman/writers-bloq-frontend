@@ -8,10 +8,10 @@ import {
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import StoryForm from "./components/StoryForm";
-import StoryList from "./components/StoryList";
 import { useContext } from "react";
 import AuthContext from "./context/authContext";
 import Details from "./components/Details";
+import PublicStories from "./components/PublicStories";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -25,8 +25,8 @@ function App() {
         <Route path="/story-builder" exact>
           <StoryForm />
         </Route>
-        <Route path="/public-stories" exact>
-          <StoryList />
+        <Route path="/:public" exact>
+          <PublicStories />
         </Route>
         <Route path="/story/:id" exact>
           <Details />
