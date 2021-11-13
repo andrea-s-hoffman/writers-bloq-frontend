@@ -20,9 +20,7 @@ const SingleStory = ({ story, yours }: Props) => {
       <div className="title-fav">
         <Link to={`/story/${story._id}`} className="title-name">
           <h2 className="story-title">{story.title}</h2>
-          {!yours && (
-            <p className="display-name">{`by: ${story.displayName}`}</p>
-          )}
+          {!yours && <p className="display-name">{`by: ${story.author}`}</p>}
         </Link>
         {yours && (
           <div className="fav" onClick={() => flipReverseFav(story._id!)}>
