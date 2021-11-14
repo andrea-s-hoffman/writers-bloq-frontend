@@ -21,7 +21,6 @@ const SingleStory = ({ story, yours }: Props) => {
   const initialLikes: number = story.upvotes;
   const [likes, setLikes] = useState(story.upvotes);
   const [commentModal, setCommentModal] = useState(false);
-  const [commentArray, setCommentArray] = useState(story!.comments!);
   const commentMessage: string =
     story.comments?.length === 1
       ? "1 comment"
@@ -47,12 +46,7 @@ const SingleStory = ({ story, yours }: Props) => {
   return (
     <div className="SingleStory">
       {commentModal && (
-        <CommentModal
-          comments={commentArray}
-          setCommentArray={() => setCommentArray(story!.comments!)}
-          setCommentModal={setCommentModal}
-          id={story!._id!}
-        />
+        <CommentModal setCommentModal={setCommentModal} id={story!._id!} />
       )}
 
       <div className="title-fav">

@@ -20,7 +20,7 @@ const Landing = () => {
           <button onClick={signInWithGoogle} className="log-in-btn">
             log in
           </button>
-          <Link className="link" to="/public">
+          <Link className="link" to="/public#top">
             or continue as guest
           </Link>
         </div>

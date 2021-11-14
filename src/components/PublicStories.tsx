@@ -15,7 +15,7 @@ const PublicStories = () => {
   };
 
   return (
-    <div className={`PublicStories ${user ? " user" : ""}`}>
+    <div className={`PublicStories ${user ? " user" : ""}`} id="public">
       {!user && <PublicHeader />}
       {user && (
         <Link to="/" className="back-link">
@@ -28,7 +28,7 @@ const PublicStories = () => {
         <SingleStory key={i} story={item} yours={yourStory(item)} />
       ))}
       {user && (
-        <Link to="/" className="public-link">
+        <Link to="/#top" className="public-link">
           View Your Stories
         </Link>
       )}

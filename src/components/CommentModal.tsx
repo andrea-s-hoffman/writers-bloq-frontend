@@ -6,25 +6,21 @@ import CommentForm from "./CommentForm";
 import "./CommentModal.css";
 
 interface Props {
-  comments: CommentModel[];
   setCommentModal: (show: boolean) => void;
-  setCommentArray: () => void;
   id: string;
 }
 
-const CommentModal = ({
-  comments,
-  setCommentModal,
-  id,
-  setCommentArray,
-}: Props) => {
+const CommentModal = ({ setCommentModal, id }: Props) => {
   const { user } = useContext(AuthContext);
+  const { allStories } = useContext(StoryContext);
   const [showForm, setShowForm] = useState(false);
   const { addComment } = useContext(StoryContext);
+  const story = allStories.find((story) => story._id === id!);
+  const [list, setCommentList] = useState(story!.comments!);
 
-  const commentHandler = (comment: CommentModel, id: string) => {
-    setCommentArray();
+  const commentHandler = async (comment: CommentModel, id: string) => {
     addComment(comment, id);
+    await setCommentList(story!.comments!);
   };
 
   return (
@@ -37,8 +33,8 @@ const CommentModal = ({
           }}
         ></i>
         <ul className="comment-list">
-          {comments.length ? (
-            comments.map((comment, i) => (
+          {list.length ? (
+            list.map((comment, i) => (
               <li key={i} className="comment-item">
                 <p className="comment">{`"${comment.comment}"`}</p>
                 <p className="author-date">from: {comment.cm_author}</p>
@@ -59,6 +55,7 @@ const CommentModal = ({
               setShowForm={setShowForm}
               id={id}
               addComment={commentHandler}
+              setList={() => setCommentList(story!.comments!)}
             />
           )
         ) : (

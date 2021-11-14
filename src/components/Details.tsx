@@ -31,13 +31,13 @@ const Details = () => {
             {user && (
               <>
                 <span>
-                  <Link to="/">your stories</Link>
+                  <Link to="/#top">your stories</Link>
                 </span>{" "}
                 /{" "}
               </>
             )}
             <span>
-              <Link to="/public">public stories</Link>
+              <Link to="/public#top">public stories</Link>
             </span>
           </p>
           <div className="stats">

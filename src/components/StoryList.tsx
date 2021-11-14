@@ -27,9 +27,9 @@ const StoryList = () => {
 
   return (
     <div className="StoryList">
-      <div className="title-select" id="top">
+      <div className="title-select">
         <h1 className="title">Your Stories:</h1>
-        <Link to="/story-builder">
+        <Link to="/story-builder#top">
           <button className="make-story-btn">write a new story</button>
         </Link>
         <FilterForm setFilter={setFilter} />
@@ -37,7 +37,7 @@ const StoryList = () => {
       {filteredStories.map((item, i) => (
         <SingleStory key={i} story={item} yours={true} />
       ))}
-      <Link to="/public" className="public-link">
+      <Link to="/public#top" className="public-link">
         View Public Stories
       </Link>
       {filteredStories.length >= 4 && (
