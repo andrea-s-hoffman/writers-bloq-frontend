@@ -40,9 +40,11 @@ const StoryList = () => {
       <Link to="/public" className="public-link">
         View Public Stories
       </Link>
-      <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
-        back to top
-      </a>
+      {filteredStories.length >= 4 && (
+        <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
+          back to top
+        </a>
+      )}
     </div>
   );
 };

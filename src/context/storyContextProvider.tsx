@@ -1,10 +1,12 @@
 import { ReactNode, useContext, useEffect, useState } from "react";
+import CommentModel from "../models/CommentModel";
 import StoryModel from "../models/StoryModel";
 import {
   deleteStory,
   getEveryStory,
-  getPublicStories,
-  getYourStories,
+  likeStory,
+  postComment,
+  unLikeStory,
   updateFavorite,
   updatePrivacy,
 } from "../services/storyService";
@@ -21,39 +23,65 @@ const StoryContextProvider = ({ children }: Props) => {
   const [publicStories, setPublicStories] = useState<StoryModel[]>([]);
   const [allStories, setAllStories] = useState<StoryModel[]>([]);
 
-  const getUserStories = () => {
-    getYourStories(user!.uid).then((data) => {
-      const newestFirst = data.reverse();
-      setUserStories(newestFirst);
+  const getAndSetAllThreeStates = () => {
+    if (user) {
+      getEveryStory().then((data) => {
+        const newestFirst = data
+          .filter((item) => item.uid === user.uid)
+          .reverse();
+        setUserStories(newestFirst);
+      });
+    }
+    getEveryStory().then((data) => {
+      setPublicStories(data.filter((item) => item.public).reverse());
     });
+    getEveryStory().then((data) => setAllStories(data.reverse()));
   };
 
   const flipReverseFav = async (id: string): Promise<void> => {
     await updateFavorite(id);
-    getUserStories();
+    getAndSetAllThreeStates();
   };
 
   const flipPrivacy = async (id: string): Promise<void> => {
     await updatePrivacy(id);
-    getUserStories();
+    getAndSetAllThreeStates();
   };
 
   const removeStory = async (id: string): Promise<void> => {
     await deleteStory(id);
-    getUserStories();
+    getAndSetAllThreeStates();
+  };
+
+  const upvoteStory = async (id: string): Promise<void> => {
+    await likeStory(id);
+    getAndSetAllThreeStates();
+  };
+  const downvoteStory = async (id: string): Promise<void> => {
+    await unLikeStory(id);
+    getAndSetAllThreeStates();
+  };
+  const addComment = async (
+    comment: CommentModel,
+    id: string
+  ): Promise<void> => {
+    await postComment(comment, id);
+    getAndSetAllThreeStates();
   };
 
   useEffect(() => {
     if (user) {
-      getYourStories(user!.uid).then((data) => {
-        const newestFirst = data.reverse();
+      getEveryStory().then((data) => {
+        const newestFirst = data
+          .filter((item) => item.uid === user.uid)
+          .reverse();
         setUserStories(newestFirst);
       });
     }
-    getPublicStories().then((data) => {
-      setPublicStories(data);
+    getEveryStory().then((data) => {
+      setPublicStories(data.filter((item) => item.public).reverse());
     });
-    getEveryStory().then((data) => setAllStories(data));
+    getEveryStory().then((data) => setAllStories(data.reverse()));
   }, [user]);
 
   return (
@@ -64,8 +92,11 @@ const StoryContextProvider = ({ children }: Props) => {
         allStories,
         flipReverseFav,
         removeStory,
-        getUserStories,
+        getAndSetAllThreeStates,
         flipPrivacy,
+        upvoteStory,
+        downvoteStory,
+        addComment,
       }}
     >
       {children}

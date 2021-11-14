@@ -1,24 +1,21 @@
 import axios from 'axios'
+import CommentModel from '../models/CommentModel';
 import StoryModel from '../models/StoryModel';
 
 const baseURL = process.env.REACT_APP_API_URL
 
-export const getYourStories = async (uid: string): Promise<StoryModel[]> => {
-    const response = await axios.get(`${baseURL}/${encodeURIComponent(uid)}`);
-    return response.data;
-}
-
 export const getEveryStory = async (): Promise<StoryModel[]> => {
-    const response = await axios.get(`${baseURL}/all`)
-    return response.data;
-}
-export const getPublicStories = async (): Promise<StoryModel[]> => {
-    const response = await axios.get(`${baseURL}/public/true`)
+    const response = await axios.get(`${baseURL}/`)
     return response.data;
 }
 
 export const postNewStory = async (story: StoryModel): Promise<void> => {
-    const response = await axios.post(baseURL!, story);
+    const response = await axios.post(`${baseURL!}/`, story);
+    return response.data;
+}
+
+export const postComment = async (comment: CommentModel, id: string): Promise<void> => {
+    const response = await axios.post(`${baseURL}/comment/${id}`, comment)
     return response.data;
 }
 
@@ -33,4 +30,11 @@ export const updatePrivacy = async (id: string): Promise<void> => {
 
 export const deleteStory = async (id: string): Promise<void> => {
     await axios.delete(`${baseURL}/${encodeURIComponent(id)}`)
+}
+
+export const likeStory = async (id: string): Promise<void> => {
+    await axios.put(`${baseURL}/upvotes/up/${encodeURIComponent(id)}`)
+}
+export const unLikeStory = async (id: string): Promise<void> => {
+    await axios.put(`${baseURL}/upvotes/down/${encodeURIComponent(id)}`)
 }

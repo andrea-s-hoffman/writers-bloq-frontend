@@ -6,11 +6,12 @@ import "./StoryForm.css";
 import { postNewStory } from "../services/storyService";
 import StoryContext from "../context/storyContext";
 import AuthContext from "../context/authContext";
+import { dateFunc } from "../functions/dateFunc";
 // import UserInput from "./UserInput";
 
 const StoryForm = () => {
   const { user } = useContext(AuthContext);
-  const { getUserStories } = useContext(StoryContext);
+  const { getAndSetAllThreeStates } = useContext(StoryContext);
   const [userSentence, setUserSentence] = useState<string>("");
   const [story, setStory] = useState<string>("");
   const [clear, setClear] = useState<boolean>(false);
@@ -68,24 +69,7 @@ const StoryForm = () => {
   };
 
   const publishStory = async () => {
-    const date = new Date();
-    let month = date.getMonth() + 1;
-    let monthString: string;
-    if (month < 10) {
-      monthString = "0" + month.toString();
-    } else {
-      monthString = month.toString();
-    }
-    let day = date.getDate();
-    let dayString: string;
-    if (day < 10) {
-      dayString = "0" + day.toString();
-    } else {
-      dayString = day.toString();
-    }
-    const year = date.getFullYear();
-    const fullDate = `${monthString}-${dayString}-${year}`;
-    const numberDate: number = parseInt(year + monthString + dayString);
+    const { fullDate, numberDate } = dateFunc();
     const newStory = {
       uid: user!.uid,
       title: title,
@@ -100,7 +84,7 @@ const StoryForm = () => {
       comments: [],
     };
     await postNewStory(newStory);
-    await getUserStories();
+    await getAndSetAllThreeStates();
   };
 
   const addTitleMsg = () => {
@@ -156,7 +140,7 @@ const StoryForm = () => {
       )}
       <div className={`${story || clear ? "flex-row" : ""}`}>
         <Link to="/" className="back-link">
-          back to all stories
+          back to your stories
         </Link>
         <h1 className={`title ${story || clear ? "sm-title" : "bg-title"}`}>
           Story Builder

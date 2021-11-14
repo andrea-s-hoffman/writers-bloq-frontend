@@ -83,4 +83,16 @@
 
 .SingleStory .comments {
   padding: 0 12px;
+  cursor: pointer;
+}
+
+.SingleStory .likes-num {
+  font-weight: 700;
+}
+
+.SingleStory .up {
+  color: rgb(51, 17, 204);
+}
+.SingleStory .down {
+  color: rgb(150, 150, 168);
 }

@@ -4,6 +4,7 @@ import AuthContext from "../context/authContext";
 import StoryContext from "../context/storyContext";
 import StoryModel from "../models/StoryModel";
 import "./Details.css";
+import PublicHeader from "./PublicHeader";
 
 interface RouteParams {
   id: string;
@@ -22,14 +23,25 @@ const Details = () => {
   }, [id, allStories]);
   return (
     <div className="Details">
-      {" "}
+      {!user && <PublicHeader />}
       {story ? (
         <>
-          <Link to="/" className="back-link">
-            back to all stories
-          </Link>
+          <p className="back-link">
+            back to:{" "}
+            {user && (
+              <>
+                <span>
+                  <Link to="/">your stories</Link>
+                </span>{" "}
+                /{" "}
+              </>
+            )}
+            <span>
+              <Link to="/public">public stories</Link>
+            </span>
+          </p>
           <div className="stats">
-            <p>{story?.date}</p>
+            <p>{story.date}</p>
             {yours && (
               <div className="public-fav">
                 <div
@@ -40,13 +52,13 @@ const Details = () => {
                 >
                   <i
                     className={`fas${
-                      story?.public ? " fa-lock-open" : " fa-lock"
+                      story.public ? " fa-lock-open" : " fa-lock"
                     }`}
                   ></i>
-                  <p>{story?.public ? "public" : "private"}</p>
+                  <p>{story.public ? "public" : "private"}</p>
                 </div>
                 <i
-                  className={`${story?.favorite ? "fas" : "far"} fa-heart`}
+                  className={`${story.favorite ? "fas" : "far"} fa-heart`}
                   onClick={() => {
                     flipReverseFav(story!._id!);
                   }}
@@ -54,9 +66,13 @@ const Details = () => {
               </div>
             )}
           </div>
-          {story?.public && <p className="author">by: {story?.author}</p>}
-          <h1 className="title">{story?.title}</h1>
-          <p className="story">{story?.story}</p>
+          {story.public && <p className="author">by: {story.author}</p>}
+          <div className="flex-story">
+            <div>
+              <h1 className="title">{story.title}</h1>
+              <p className="story">{story.story}</p>
+            </div>
+          </div>
           {yours && (
             <Link to="/">
               <p className="delete" onClick={() => removeStory(story!._id!)}>

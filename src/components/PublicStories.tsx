@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import StoryContext from "../context/storyContext";
-import { signInWithGoogle } from "../firebaseConfig";
 import StoryModel from "../models/StoryModel";
+import PublicHeader from "./PublicHeader";
 import "./PublicStories.css";
 import SingleStory from "./SingleStory";
 
@@ -14,20 +14,9 @@ const PublicStories = () => {
     return story.uid === user?.uid;
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
-
   return (
     <div className={`PublicStories ${user ? " user" : ""}`}>
-      {!user && (
-        <header className="header">
-          <div className="logo">logo</div>
-          <button className="log-in" onClick={signInWithGoogle}>
-            log in
-          </button>
-        </header>
-      )}
+      {!user && <PublicHeader />}
       {user && (
         <Link to="/" className="back-link">
           back to your stories
@@ -43,9 +32,11 @@ const PublicStories = () => {
           View Your Stories
         </Link>
       )}
-      <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
-        back to top
-      </a>
+      {publicStories.length >= 4 && (
+        <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
+          back to top
+        </a>
+      )}
     </div>
   );
 };

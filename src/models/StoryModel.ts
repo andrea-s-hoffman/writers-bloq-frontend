@@ -1,9 +1,4 @@
-interface CommentModel {
-    cm_author: string,
-    cm_displayName: string,
-    comment: string,
-    date: string
-}
+import CommentModel from "./CommentModel";
 
 export default interface StoryModel {
     _id?: string;

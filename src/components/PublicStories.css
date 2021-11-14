@@ -27,21 +27,6 @@
   padding: 125px 0 0 0;
 }
 
-.PublicStories .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid rgb(222, 80, 80);
-  width: 100%;
-  position: fixed;
-  background-color: white;
-}
-
-.PublicStories .logo,
-.PublicStories .log-in {
-  margin: 20px;
-}
-
 .PublicStories .public-link {
   margin: 35px 0 0 0;
   text-transform: uppercase;

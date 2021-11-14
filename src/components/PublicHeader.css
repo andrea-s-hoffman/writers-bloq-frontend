@@ -1,0 +1,14 @@
+.PublicHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(222, 80, 80);
+  width: 100%;
+  position: fixed;
+  background-color: white;
+}
+
+.PublicHeader .logo,
+.PublicHeader .log-in {
+  margin: 20px;
+}

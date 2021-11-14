@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import StoryContext from "../context/storyContext";
 import StoryModel from "../models/StoryModel";
+import CommentModal from "./CommentModal";
 import "./SingleStory.css";
 
 interface Props {
@@ -10,13 +11,50 @@ interface Props {
 }
 
 const SingleStory = ({ story, yours }: Props) => {
-  const { flipReverseFav, removeStory, flipPrivacy } = useContext(StoryContext);
+  const {
+    flipReverseFav,
+    removeStory,
+    flipPrivacy,
+    upvoteStory,
+    downvoteStory,
+  } = useContext(StoryContext);
+  const initialLikes: number = story.upvotes;
+  const [likes, setLikes] = useState(story.upvotes);
+  const [commentModal, setCommentModal] = useState(false);
+  const [commentArray, setCommentArray] = useState(story!.comments!);
+  const commentMessage: string =
+    story.comments?.length === 1
+      ? "1 comment"
+      : `${story.comments?.length} comments`;
 
   const highlight = story.story.substring(0, 300).split(" ");
   highlight.pop();
 
+  const like = () => {
+    if (likes < initialLikes + 1) {
+      upvoteStory(story._id!);
+      setLikes((prev) => prev + 1);
+    }
+  };
+
+  const unLike = () => {
+    if (likes > initialLikes - 1) {
+      downvoteStory(story._id!);
+      setLikes((prev) => prev - 1);
+    }
+  };
+
   return (
     <div className="SingleStory">
+      {commentModal && (
+        <CommentModal
+          comments={commentArray}
+          setCommentArray={() => setCommentArray(story!.comments!)}
+          setCommentModal={setCommentModal}
+          id={story!._id!}
+        />
+      )}
+
       <div className="title-fav">
         <Link to={`/story/${story._id}`} className="title-name">
           <h2 className="story-title">{story.title}</h2>
@@ -48,11 +86,33 @@ const SingleStory = ({ story, yours }: Props) => {
         ) : (
           <div className="socials">
             <p className="likes">
-              <i className="fas fa-caret-square-down"></i>
-              {story.upvotes}
-              <i className="fas fa-caret-square-up"></i>
+              <i
+                className={`fas fa-caret-square-down ${
+                  likes < initialLikes ? "down" : ""
+                }`}
+                onClick={unLike}
+              ></i>
+              <span
+                className={`likes-num ${
+                  likes > initialLikes
+                    ? "up"
+                    : likes < initialLikes
+                    ? "down"
+                    : ""
+                }`}
+              >
+                {likes}
+              </span>
+              <i
+                className={`fas fa-caret-square-up ${
+                  likes > initialLikes ? "up" : ""
+                }`}
+                onClick={like}
+              ></i>
             </p>
-            <p className="comments">comments</p>
+            <p className="comments" onClick={() => setCommentModal(true)}>
+              {commentMessage}
+            </p>
           </div>
         )}
       </div>

@@ -1,13 +1,14 @@
-.Details {
-  padding: 130px 30px 0 30px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-}
-
 .Details .back-link {
   padding: 0 0 0 5px;
+  padding: 130px 0 0 0;
+  color: rgb(150, 150, 168);
+}
+
+.Details .back-link a {
   font-weight: 700;
+}
+.Details .back-link a:hover {
+  color: rgb(51, 17, 204);
 }
 
 .Details .title {
@@ -15,7 +16,14 @@
   color: rgb(53, 53, 59);
   font-weight: 700;
   font-size: 24px;
-  margin: 20px 0 10px 0;
+  margin: 30px 0 10px 20px;
+}
+
+.Details .flex-story {
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Details .story {
@@ -23,16 +31,25 @@
   color: rgb(53, 53, 59);
   font-weight: 400;
   font-size: 16px;
-  line-height: 18px;
-  padding: 0 0 20px 0;
+  line-height: 21px;
+  padding: 0 0 50px 20px;
   border-bottom: 2px solid rgb(150, 150, 168);
+  max-width: 575px;
 }
 
 .Details .stats {
   border-bottom: 2px solid rgb(222, 80, 80);
   padding: 5px;
   color: rgb(222, 80, 80);
-  margin: 10px 0 0 0;
+  margin-top: 10px;
+  width: 92%;
+}
+
+.Details .stats,
+.Details .author,
+.Details .back-link {
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .Details .stats,
