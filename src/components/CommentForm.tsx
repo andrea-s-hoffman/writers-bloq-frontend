@@ -28,7 +28,7 @@ const CommentForm = ({ setShowForm, id, addComment }: Props) => {
     }
   };
   return (
-    <form className="CommentForm" onSubmit={submitHandler} action="post">
+    <form className="CommentForm" onSubmit={submitHandler} method="post">
       <label htmlFor="author">name</label>
       <input
         type="text"
