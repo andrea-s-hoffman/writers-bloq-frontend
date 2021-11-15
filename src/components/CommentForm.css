@@ -4,6 +4,6 @@
   margin: 0 60px;
 }
 
-.CommentForm #comment {
+.CommentForm input {
   font-size: 18px;
 }
