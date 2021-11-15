@@ -8,9 +8,8 @@ interface Props {
   setShowForm: (show: boolean) => void;
   id: string;
   addComment: (comment: CommentModel, id: string) => void;
-  setList: () => void;
 }
-const CommentForm = ({ setShowForm, id, addComment, setList }: Props) => {
+const CommentForm = ({ setShowForm, id, addComment }: Props) => {
   const { user } = useContext(AuthContext);
   const [author, setAuthor] = useState<string>(user!.displayName!);
   const [comment, setComment] = useState("");

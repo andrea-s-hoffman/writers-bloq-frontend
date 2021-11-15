@@ -16,11 +16,10 @@ const CommentModal = ({ setCommentModal, id }: Props) => {
   const [showForm, setShowForm] = useState(false);
   const { addComment } = useContext(StoryContext);
   const story = allStories.find((story) => story._id === id!);
-  const [list, setCommentList] = useState(story!.comments!);
+  // const [list, setCommentList] = useState(story!.comments!);
 
-  const commentHandler = async (comment: CommentModel, id: string) => {
+  const commentHandler = (comment: CommentModel, id: string) => {
     addComment(comment, id);
-    await setCommentList(story!.comments!);
   };
 
   return (
@@ -33,8 +32,8 @@ const CommentModal = ({ setCommentModal, id }: Props) => {
           }}
         ></i>
         <ul className="comment-list">
-          {list.length ? (
-            list.map((comment, i) => (
+          {story?.comments!.length ? (
+            story.comments.map((comment, i) => (
               <li key={i} className="comment-item">
                 <p className="comment">{`"${comment.comment}"`}</p>
                 <p className="author-date">from: {comment.cm_author}</p>
@@ -55,7 +54,6 @@ const CommentModal = ({ setCommentModal, id }: Props) => {
               setShowForm={setShowForm}
               id={id}
               addComment={commentHandler}
-              setList={() => setCommentList(story!.comments!)}
             />
           )
         ) : (
