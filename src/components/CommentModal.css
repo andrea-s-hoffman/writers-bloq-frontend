@@ -14,7 +14,6 @@
   background-color: white;
   width: 400px;
   height: 400px;
-  overflow-y: scroll;
   border: solid 2px rgb(51, 17, 204);
   border-radius: 10px;
   top: 50%;
@@ -22,9 +21,18 @@
   max-width: 90%;
 }
 
+.CommentModal .inner-modal {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 .CommentModal i.fa-times-circle {
   color: rgb(51, 17, 204);
   font-size: 20px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
 }
 
 .CommentModal .comment-list {

@@ -8,9 +8,10 @@ import "./SingleStory.css";
 interface Props {
   story: StoryModel;
   yours: boolean;
+  setScroll: (b: boolean) => void;
 }
 
-const SingleStory = ({ story, yours }: Props) => {
+const SingleStory = ({ story, yours, setScroll }: Props) => {
   const {
     flipReverseFav,
     removeStory,
@@ -43,10 +44,19 @@ const SingleStory = ({ story, yours }: Props) => {
     }
   };
 
+  const openModal = () => {
+    setScroll(false);
+    setCommentModal(true);
+  };
+
   return (
     <div className="SingleStory">
       {commentModal && (
-        <CommentModal setCommentModal={setCommentModal} id={story!._id!} />
+        <CommentModal
+          setCommentModal={setCommentModal}
+          id={story!._id!}
+          setScroll={setScroll}
+        />
       )}
 
       <div className="title-fav">
@@ -104,7 +114,7 @@ const SingleStory = ({ story, yours }: Props) => {
                 onClick={like}
               ></i>
             </p>
-            <p className="comments" onClick={() => setCommentModal(true)}>
+            <p className="comments" onClick={openModal}>
               {commentMessage}
             </p>
           </div>
