@@ -34,22 +34,28 @@ const StoryList = () => {
         </Link>
         <FilterForm setFilter={setFilter} />
       </div>
-      {filteredStories.map((item, i) => (
-        <SingleStory key={i} story={item} yours={true} setScroll={() => {}} />
-      ))}
-      <Link to="/public#top" className="public-link">
-        View Public Stories
-      </Link>
-      {filteredStories ? (
+      {filteredStories.length ? (
         <>
-          {filteredStories.length >= 4 && (
-            <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
-              back to top
-            </a>
-          )}
+          {filteredStories.map((item, i) => (
+            <SingleStory
+              key={i}
+              story={item}
+              yours={true}
+              setScroll={() => {}}
+            />
+          ))}
         </>
       ) : (
         <p>No stories yet... get one started!</p>
+      )}
+      <Link to="/public#top" className="public-link">
+        View Public Stories
+      </Link>
+
+      {filteredStories.length >= 4 && (
+        <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
+          back to top
+        </a>
       )}
     </div>
   );
