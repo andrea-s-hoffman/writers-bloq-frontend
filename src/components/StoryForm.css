@@ -1,5 +1,6 @@
 .StoryForm {
   padding: 120px 0 0 0;
+  z-index: 0;
 }
 
 .StoryForm .back-link {
