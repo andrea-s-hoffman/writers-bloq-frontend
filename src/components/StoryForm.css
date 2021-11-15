@@ -54,8 +54,12 @@
   border: 2px solid rgb(222, 80, 80);
   margin-left: 28px;
   font-family: "Heebo", sans-serif;
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 17px;
+}
+
+.StoryForm textarea {
+  font-size: 16px;
 }
 
 .StoryForm .submit-btn {
