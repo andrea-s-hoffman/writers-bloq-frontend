@@ -26,7 +26,7 @@ const StoryList = () => {
   }, [filter, userStories]);
 
   return (
-    <div className="StoryList">
+    <div className="StoryList" id="top">
       <div className="title-select">
         <h1 className="title">Your Stories:</h1>
         <Link to="/story-builder#top">
@@ -48,12 +48,12 @@ const StoryList = () => {
       ) : (
         <p>No stories yet... get one started!</p>
       )}
-      <Link to="/public#top" className="public-link">
+      <Link to="/public#start" className="public-link">
         View Public Stories
       </Link>
 
       {filteredStories.length >= 4 && (
-        <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
+        <a href="#start" style={{ paddingTop: "20px", fontWeight: 700 }}>
           back to top
         </a>
       )}

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import StoryContext from "../context/storyContext";
 import StoryModel from "../models/StoryModel";
+import CommentModal from "./CommentModal";
 import "./Details.css";
 import PublicHeader from "./PublicHeader";
 
@@ -16,6 +17,7 @@ const Details = () => {
   const { allStories } = useContext(StoryContext);
   const { user } = useContext(AuthContext);
   const yours = story?.uid === user?.uid;
+  const [commentModal, setCommentModal] = useState(false);
   const { flipReverseFav, removeStory, flipPrivacy } = useContext(StoryContext);
   useEffect(() => {
     const storyDetail = allStories.find((story) => story._id === id);
@@ -26,6 +28,13 @@ const Details = () => {
       {!user && <PublicHeader />}
       {story ? (
         <>
+          {commentModal && (
+            <CommentModal
+              setCommentModal={setCommentModal}
+              id={story!._id!}
+              setScroll={() => {}}
+            />
+          )}
           <p className="back-link">
             back to:{" "}
             {user && (
@@ -66,7 +75,22 @@ const Details = () => {
               </div>
             )}
           </div>
-          {story.public && <p className="author">by: {story.author}</p>}
+          <div className="author-socials">
+            {story.public && <p className="author">by: {story.author}</p>}
+            <div className="socials">
+              <p>{`${
+                story.upvotes === 1 ? "1 like" : story.upvotes + " likes"
+              }`}</p>
+              <p
+                onClick={() => setCommentModal(true)}
+                style={{ cursor: "pointer" }}
+              >{`${
+                story.comments?.length === 1
+                  ? "1 comment"
+                  : story.comments?.length + " comments"
+              }`}</p>
+            </div>
+          </div>
           <div className="flex-story">
             <div>
               <h1 className="title">{story.title}</h1>
@@ -84,7 +108,9 @@ const Details = () => {
       ) : (
         <div>
           <p>Story not found</p>
-          <Link to="/">go home</Link>
+          <Link to="/" className="four-oh-four">
+            go home
+          </Link>
         </div>
       )}
     </div>

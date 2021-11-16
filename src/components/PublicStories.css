@@ -27,7 +27,6 @@
 }
 
 .PublicStories .public-link {
-  margin: 35px 0 100px 0;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
@@ -37,4 +36,16 @@
 .PublicStories.hide-scroll {
   overflow-y: hidden;
   height: 100vh;
+}
+
+.PublicStories .bottom-links {
+  margin: 35px 0 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  position: fixed;
+  top: 0;
 }

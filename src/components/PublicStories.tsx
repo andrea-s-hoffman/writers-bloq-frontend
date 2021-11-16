@@ -20,8 +20,8 @@ const PublicStories = () => {
       className={`PublicStories ${user ? "user" : ""}${
         !scroll ? " hide-scroll" : ""
       }`}
-      id="public"
     >
+      <nav id="start"></nav>
       {!user && <PublicHeader />}
       {user && (
         <Link to="/" className="back-link">
@@ -38,16 +38,18 @@ const PublicStories = () => {
           setScroll={setScroll}
         />
       ))}
-      {user && (
-        <Link to="/#top" className="public-link">
-          View Your Stories
-        </Link>
-      )}
-      {publicStories.length >= 4 && (
-        <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
-          back to top
-        </a>
-      )}
+      <div className="bottom-links">
+        {user && (
+          <Link to="/#top" className="public-link">
+            View Your Stories
+          </Link>
+        )}
+        {publicStories.length >= 4 && (
+          <a href="#top" style={{ paddingTop: "20px", fontWeight: 700 }}>
+            back to top
+          </a>
+        )}
+      </div>
     </div>
   );
 };

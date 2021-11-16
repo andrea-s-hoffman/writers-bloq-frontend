@@ -9,7 +9,7 @@ const Header = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <header className="Header" id="top">
+    <header className="Header">
       <div>
         {user?.photoURL ? (
           <Link to="/">
