@@ -1,7 +1,6 @@
-# Live at:
+Live at:
 
-writers-bloq.web.app
+### writers-bloq.web.app
 
-### To do:
-
+To do:
 fill this out
