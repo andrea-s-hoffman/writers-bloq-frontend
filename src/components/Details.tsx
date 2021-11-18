@@ -92,7 +92,7 @@ const Details = () => {
             </div>
           </div>
           <div className="flex-story">
-            <div>
+            <div className={`${!yours ? "margin" : ""}`}>
               <h1 className="title">{story.title}</h1>
               <p className="story">{story.story}</p>
             </div>
