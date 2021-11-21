@@ -19,31 +19,17 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
     flipPrivacy,
     upvoteStory,
     downvoteStory,
+    pullUpvoteStory,
+    pullDownvoteStory,
   } = useContext(StoryContext);
-  // const initialLikes: number = story.upvotes;
-  // const [likes, setLikes] = useState(story.upvotes);
   const { user } = useContext(AuthContext);
   const [commentModal, setCommentModal] = useState(false);
-  // const userHasLiked: boolean = story.upvotes.up.some(
-  //   (item) => item === user?.uid!
-  // );
-
-  // const userHasDisliked: boolean = story.upvotes.down.some(
-  //   (item) => item === user?.uid!
-  // );
-  // console.log("liked:", userHasLiked, "disliked:", userHasDisliked);
-  let userLikes: number = 0;
-  story.upvotes.up.forEach((like) => {
-    if (like === user?.uid!) {
-      userLikes++;
-    }
-  });
-  let userDislikes: number = 0;
-  story.upvotes.down.forEach((like) => {
-    if (like === user?.uid!) {
-      userDislikes++;
-    }
-  });
+  const userHasLiked: boolean = story.upvotes.up.some(
+    (like) => like === user?.uid!
+  );
+  const userHasDisliked: boolean = story.upvotes.down.some(
+    (like) => like === user?.uid!
+  );
   const commentMessage: string =
     story.comments?.length === 1
       ? "1 comment"
@@ -53,18 +39,31 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
   highlight.pop();
 
   const like = () => {
-    if (userLikes <= userDislikes) {
+    if (
+      !story.upvotes.up.some((like) => like === user?.uid!) &&
+      !story.upvotes.down.some((like) => like === user?.uid!)
+    ) {
       upvoteStory(story._id!, user?.uid!);
+    } else if (
+      !story.upvotes.up.some((like) => like === user?.uid!) &&
+      story.upvotes.down.some((like) => like === user?.uid!)
+    ) {
+      pullDownvoteStory(story._id!, user?.uid!);
     }
   };
 
   const unLike = () => {
-    // if (likes > initialLikes - 1) {
-    if (userLikes >= userDislikes) {
+    if (
+      !story.upvotes.up.some((like) => like === user?.uid!) &&
+      !story.upvotes.down.some((like) => like === user?.uid!)
+    ) {
       downvoteStory(story._id!, user?.uid!);
+    } else if (
+      story.upvotes.up.some((like) => like === user?.uid!) &&
+      !story.upvotes.down.some((like) => like === user?.uid!)
+    ) {
+      pullUpvoteStory(story._id!, user?.uid!);
     }
-    //   setLikes((prev) => prev - 1);
-    // }
   };
 
   const openModal = () => {
@@ -116,7 +115,7 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
               <p className="likes">
                 <i
                   className={`fas fa-caret-square-down ${
-                    userLikes < userDislikes ? "down" : ""
+                    userHasDisliked ? "down" : ""
                   }`}
                   onClick={unLike}
                 ></i>
@@ -125,7 +124,7 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
                 </span>
                 <i
                   className={`fas fa-caret-square-up ${
-                    userLikes > userDislikes ? "up" : ""
+                    userHasLiked ? "up" : ""
                   }`}
                   onClick={like}
                 ></i>

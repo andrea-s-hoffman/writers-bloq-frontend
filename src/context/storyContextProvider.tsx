@@ -5,6 +5,8 @@ import {
   deleteStory,
   getEveryStory,
   likeStory,
+  minusLikeStory,
+  minusUnLikeStory,
   postComment,
   unLikeStory,
   updateFavorite,
@@ -61,6 +63,14 @@ const StoryContextProvider = ({ children }: Props) => {
     await unLikeStory(id, user);
     getAndSetAllThreeStates();
   };
+  const pullUpvoteStory = async (id: string, user: string): Promise<void> => {
+    await minusLikeStory(id, user);
+    getAndSetAllThreeStates();
+  };
+  const pullDownvoteStory = async (id: string, user: string): Promise<void> => {
+    await minusUnLikeStory(id, user);
+    getAndSetAllThreeStates();
+  };
   const addComment = async (
     comment: CommentModel,
     id: string
@@ -97,6 +107,8 @@ const StoryContextProvider = ({ children }: Props) => {
         upvoteStory,
         downvoteStory,
         addComment,
+        pullDownvoteStory,
+        pullUpvoteStory,
       }}
     >
       {children}

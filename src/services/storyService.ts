@@ -34,8 +34,15 @@ export const deleteStory = async (id: string): Promise<void> => {
 
 export const likeStory = async (id: string, user: string): Promise<void> => {
     console.log(user);
-    await axios.post(`${baseURL}/upvotes/up/${encodeURIComponent(id)}`, { user })
+    await axios.post(`${baseURL}/upvotes/plus-up/${encodeURIComponent(id)}`, { user })
+}
+export const minusLikeStory = async (id: string, user: string): Promise<void> => {
+    console.log(user);
+    await axios.post(`${baseURL}/upvotes/minus-up/${encodeURIComponent(id)}`, { user })
 }
 export const unLikeStory = async (id: string, user: string): Promise<void> => {
-    await axios.post(`${baseURL}/upvotes/down/${encodeURIComponent(id)}`, { user })
+    await axios.post(`${baseURL}/upvotes/plus-down/${encodeURIComponent(id)}`, { user })
+}
+export const minusUnLikeStory = async (id: string, user: string): Promise<void> => {
+    await axios.post(`${baseURL}/upvotes/minus-down/${encodeURIComponent(id)}`, { user })
 }

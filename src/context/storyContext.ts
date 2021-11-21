@@ -12,6 +12,8 @@ interface StoryContextModel {
     getAndSetAllThreeStates: () => void;
     upvoteStory: (id: string, user: string) => void;
     downvoteStory: (id: string, user: string) => void;
+    pullUpvoteStory: (id: string, user: string) => void;
+    pullDownvoteStory: (id: string, user: string) => void;
     addComment: (comment: CommentModel, id: string) => void;
 }
 
@@ -25,6 +27,8 @@ const defaultValues: StoryContextModel = {
     getAndSetAllThreeStates: () => { },
     upvoteStory: () => { },
     downvoteStory: () => { },
+    pullUpvoteStory: () => { },
+    pullDownvoteStory: () => { },
     addComment: () => { },
 };
 
