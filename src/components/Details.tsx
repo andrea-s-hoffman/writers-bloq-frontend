@@ -79,7 +79,11 @@ const Details = () => {
             {story.public && <p className="author">by: {story.author}</p>}
             <div className="socials">
               <p>{`${
-                story.upvotes === 1 ? "1 like" : story.upvotes + " likes"
+                story.upvotes.up.length - story.upvotes.down.length === 1
+                  ? "1 like"
+                  : story.upvotes.up.length -
+                    story.upvotes.down.length +
+                    " likes"
               }`}</p>
               <p
                 onClick={() => setCommentModal(true)}

@@ -1,4 +1,5 @@
 import CommentModel from "./CommentModel";
+import UpvoteModel from "./UpvoteModel";
 
 export default interface StoryModel {
     _id?: string;
@@ -9,7 +10,7 @@ export default interface StoryModel {
     dateNum: number;
     story: string;
     favorite: boolean;
-    upvotes: number;
+    upvotes: UpvoteModel;
     comments?: CommentModel[];
     public: boolean;
     displayName?: string;

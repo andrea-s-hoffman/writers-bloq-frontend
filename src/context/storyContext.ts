@@ -10,8 +10,8 @@ interface StoryContextModel {
     flipPrivacy: (id: string) => void;
     removeStory: (id: string) => void;
     getAndSetAllThreeStates: () => void;
-    upvoteStory: (id: string) => void;
-    downvoteStory: (id: string) => void;
+    upvoteStory: (id: string, user: string) => void;
+    downvoteStory: (id: string, user: string) => void;
     addComment: (comment: CommentModel, id: string) => void;
 }
 

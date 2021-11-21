@@ -32,9 +32,10 @@ export const deleteStory = async (id: string): Promise<void> => {
     await axios.delete(`${baseURL}/${encodeURIComponent(id)}`)
 }
 
-export const likeStory = async (id: string): Promise<void> => {
-    await axios.put(`${baseURL}/upvotes/up/${encodeURIComponent(id)}`)
+export const likeStory = async (id: string, user: string): Promise<void> => {
+    console.log(user);
+    await axios.post(`${baseURL}/upvotes/up/${encodeURIComponent(id)}`, { user })
 }
-export const unLikeStory = async (id: string): Promise<void> => {
-    await axios.put(`${baseURL}/upvotes/down/${encodeURIComponent(id)}`)
+export const unLikeStory = async (id: string, user: string): Promise<void> => {
+    await axios.post(`${baseURL}/upvotes/down/${encodeURIComponent(id)}`, { user })
 }

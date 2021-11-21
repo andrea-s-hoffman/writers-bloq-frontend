@@ -53,12 +53,12 @@ const StoryContextProvider = ({ children }: Props) => {
     getAndSetAllThreeStates();
   };
 
-  const upvoteStory = async (id: string): Promise<void> => {
-    await likeStory(id);
+  const upvoteStory = async (id: string, user: string): Promise<void> => {
+    await likeStory(id, user);
     getAndSetAllThreeStates();
   };
-  const downvoteStory = async (id: string): Promise<void> => {
-    await unLikeStory(id);
+  const downvoteStory = async (id: string, user: string): Promise<void> => {
+    await unLikeStory(id, user);
     getAndSetAllThreeStates();
   };
   const addComment = async (

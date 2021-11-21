@@ -77,7 +77,7 @@ const StoryForm = () => {
       dateNum: numberDate,
       favorite: false,
       story: story,
-      upvotes: 0,
+      upvotes: { up: [], down: [] },
       public: publicSelected,
       author: authorSelect ?? "",
       displayName: user?.displayName ?? "user didn't have display name",

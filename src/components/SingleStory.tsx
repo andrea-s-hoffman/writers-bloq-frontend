@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/authContext";
 import StoryContext from "../context/storyContext";
 import StoryModel from "../models/StoryModel";
 import CommentModal from "./CommentModal";
@@ -19,9 +20,30 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
     upvoteStory,
     downvoteStory,
   } = useContext(StoryContext);
-  const initialLikes: number = story.upvotes;
-  const [likes, setLikes] = useState(story.upvotes);
+  // const initialLikes: number = story.upvotes;
+  // const [likes, setLikes] = useState(story.upvotes);
+  const { user } = useContext(AuthContext);
   const [commentModal, setCommentModal] = useState(false);
+  // const userHasLiked: boolean = story.upvotes.up.some(
+  //   (item) => item === user?.uid!
+  // );
+
+  // const userHasDisliked: boolean = story.upvotes.down.some(
+  //   (item) => item === user?.uid!
+  // );
+  // console.log("liked:", userHasLiked, "disliked:", userHasDisliked);
+  let userLikes: number = 0;
+  story.upvotes.up.forEach((like) => {
+    if (like === user?.uid!) {
+      userLikes++;
+    }
+  });
+  let userDislikes: number = 0;
+  story.upvotes.down.forEach((like) => {
+    if (like === user?.uid!) {
+      userDislikes++;
+    }
+  });
   const commentMessage: string =
     story.comments?.length === 1
       ? "1 comment"
@@ -31,17 +53,18 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
   highlight.pop();
 
   const like = () => {
-    if (likes < initialLikes + 1) {
-      upvoteStory(story._id!);
-      setLikes((prev) => prev + 1);
+    if (userLikes <= userDislikes) {
+      upvoteStory(story._id!, user?.uid!);
     }
   };
 
   const unLike = () => {
-    if (likes > initialLikes - 1) {
-      downvoteStory(story._id!);
-      setLikes((prev) => prev - 1);
+    // if (likes > initialLikes - 1) {
+    if (userLikes >= userDislikes) {
+      downvoteStory(story._id!, user?.uid!);
     }
+    //   setLikes((prev) => prev - 1);
+    // }
   };
 
   const openModal = () => {
@@ -89,31 +112,25 @@ const SingleStory = ({ story, yours, setScroll }: Props) => {
           </div>
         ) : (
           <div className="socials">
-            <p className="likes">
-              <i
-                className={`fas fa-caret-square-down ${
-                  likes < initialLikes ? "down" : ""
-                }`}
-                onClick={unLike}
-              ></i>
-              <span
-                className={`likes-num ${
-                  likes > initialLikes
-                    ? "up"
-                    : likes < initialLikes
-                    ? "down"
-                    : ""
-                }`}
-              >
-                {likes}
-              </span>
-              <i
-                className={`fas fa-caret-square-up ${
-                  likes > initialLikes ? "up" : ""
-                }`}
-                onClick={like}
-              ></i>
-            </p>
+            {user && !yours && (
+              <p className="likes">
+                <i
+                  className={`fas fa-caret-square-down ${
+                    userLikes < userDislikes ? "down" : ""
+                  }`}
+                  onClick={unLike}
+                ></i>
+                <span className="likes-num">
+                  {story?.upvotes.up.length - story?.upvotes.down.length}
+                </span>
+                <i
+                  className={`fas fa-caret-square-up ${
+                    userLikes > userDislikes ? "up" : ""
+                  }`}
+                  onClick={like}
+                ></i>
+              </p>
+            )}
             <p className="comments" onClick={openModal}>
               {commentMessage}
             </p>
