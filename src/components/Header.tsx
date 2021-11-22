@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/authContext";
 import { signOut } from "../firebaseConfig";
+import WBLogo from "../images/wb-logo.png";
 import "./Header.css";
 
 const Header = () => {
@@ -28,7 +29,7 @@ const Header = () => {
             </div>
           </Link>
         ) : (
-          <p>logo</p>
+          <img src={WBLogo} alt="logo" className="logo" />
         )}
       </div>
       <div className="sign-in-out-star">

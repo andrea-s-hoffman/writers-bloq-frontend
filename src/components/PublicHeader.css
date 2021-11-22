@@ -8,6 +8,10 @@
   background-color: white;
 }
 
+.PublicHeader .logo {
+  width: 100px;
+}
+
 .PublicHeader .logo,
 .PublicHeader .log-in {
   margin: 20px;

@@ -1,11 +1,12 @@
 import { signInWithGoogle } from "../firebaseConfig";
+import WBLogo from "../images/wb-logo.png";
 import "./PublicHeader.css";
 
 const PublicHeader = () => {
   return (
     <header className="PublicHeader">
       {" "}
-      <div className="logo">logo</div>
+      <img src={WBLogo} alt="logo" className="logo" />
       <button className="log-in" onClick={signInWithGoogle}>
         log in
       </button>

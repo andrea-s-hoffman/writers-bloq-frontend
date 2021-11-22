@@ -15,6 +15,10 @@
   height: 100px;
 }
 
+.Header .logo {
+  width: 100px;
+}
+
 .Header .sign-in-out-star {
   position: relative;
   width: 170px;

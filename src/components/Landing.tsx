@@ -4,6 +4,7 @@ import "./Landing.css";
 import StoryList from "./StoryList";
 import { signInWithGoogle } from "../firebaseConfig";
 import AuthContext from "../context/authContext";
+import WBLogo from "../images/wb-logo.png";
 
 const Landing = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Landing = () => {
     <div className="Landing">
       {!user ? (
         <div className="landing-guest">
-          <div className="logo">logo</div>
+          <img className="logo" src={WBLogo} alt="logo" />
           <p className="description">
             {`Howdy!!! Write your next madlibs here with an AI text generator.
             Please log in tytyty`}

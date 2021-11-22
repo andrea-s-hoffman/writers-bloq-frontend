@@ -58,15 +58,17 @@ const StoryForm = () => {
         setClear(true);
         setStory(undidStory);
         setUndoOne("");
-      } else {
-        setStory(undidStory);
-        setUndoOne("");
       }
       if (story === undidStory) {
         alert("cannot undo edited text");
       }
     }
   };
+
+  // const redoLastTry = async () => {
+  //   undo();
+  //   // addToStory(e);
+  // };
 
   const publishStory = async () => {
     const { fullDate, numberDate } = dateFunc();
@@ -238,7 +240,7 @@ const StoryForm = () => {
                 <button className="submit-btn">submit</button>
               </div>
             </form>
-            {/* <UserInput add={addToStory} /> */}
+            {/* {undoOne && <p onClick={redoLastTry}>redo last attempt</p>} */}
             <div className="publish-container">
               {publishErrorMsg && (
                 <div className="publish-error-msg">{publishErrorMsg}</div>
