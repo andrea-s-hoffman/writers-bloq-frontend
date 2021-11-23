@@ -59,9 +59,9 @@ const StoryForm = () => {
       let undidStory = story.replace(undoOne, "");
       if (undidStory === "") {
         setClear(true);
-        setStory(undidStory);
-        setUndoOne("");
       }
+      setStory(undidStory);
+      setUndoOne("");
       if (story === undidStory) {
         alert("cannot undo edited text");
       }
