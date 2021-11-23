@@ -248,7 +248,7 @@ const StoryForm = () => {
                 <button className="submit-btn">submit</button>
               </div>
             </form>
-            {undoOne && (
+            {redoSentence && (
               <p onClick={redoLastTry} className="redo">
                 redo last attempt
               </p>
