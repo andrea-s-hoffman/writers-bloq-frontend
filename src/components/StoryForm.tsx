@@ -22,18 +22,21 @@ const StoryForm = () => {
   const [undoOne, setUndoOne] = useState<string>("");
   const [publishErrorMsg, setPublishErrorMsg] = useState<string>("");
   const [publicSelected, setPublicSelected] = useState<boolean>(false);
-  const [authorSelect, setAuthor] = useState<string>();
+  const [authorSelect, setAuthor] = useState<string>("");
+  const [redoSentence, setRedoSentece] = useState("");
 
-  const addToStory = async (e: FormEvent) => {
+  const addToStory = (e: FormEvent) => {
     e.preventDefault();
     if (userSentence) {
       setLoading(true);
-      let aiText = await getRandomText(userSentence);
-      await setUndoOne(aiText);
-      setStory([story, " ", aiText].join("").trim());
-      await setUserSentence("");
-      setClear(false);
-      setLoading(false);
+      getRandomText(userSentence).then((res) => {
+        setUndoOne(res);
+        setStory([story, " ", res].join("").trim());
+        setRedoSentece(userSentence);
+        setUserSentence("");
+        setClear(false);
+        setLoading(false);
+      });
     } else {
       setErrorMsg(true);
     }
@@ -65,10 +68,15 @@ const StoryForm = () => {
     }
   };
 
-  // const redoLastTry = async () => {
-  //   undo();
-  //   // addToStory(e);
-  // };
+  const redoLastTry = () => {
+    let undidStory = story.replace(undoOne, "");
+    setLoading(true);
+    getRandomText(redoSentence).then((res) => {
+      setStory(undidStory + "" + res);
+      setUndoOne(res);
+      setLoading(false);
+    });
+  };
 
   const publishStory = async () => {
     const { fullDate, numberDate } = dateFunc();
@@ -240,7 +248,11 @@ const StoryForm = () => {
                 <button className="submit-btn">submit</button>
               </div>
             </form>
-            {/* {undoOne && <p onClick={redoLastTry}>redo last attempt</p>} */}
+            {undoOne && (
+              <p onClick={redoLastTry} className="redo">
+                redo last attempt
+              </p>
+            )}
             <div className="publish-container">
               {publishErrorMsg && (
                 <div className="publish-error-msg">{publishErrorMsg}</div>
