@@ -1,6 +1,2 @@
-Live at:
-
-### writers-bloq.web.app
-
-To do:
-fill this out
+#Writer's Bloq is a WIP
+Currently hosted [here](writers-bloq.web.app).
