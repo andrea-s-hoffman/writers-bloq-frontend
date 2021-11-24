@@ -1,3 +1,3 @@
 # Writer's Bloq is a WIP
 
-Currently hosted [here](writers-bloq.web.app).
+Currently hosted [here](https://writers-bloq.web.app/).
