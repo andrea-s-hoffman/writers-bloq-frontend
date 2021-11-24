@@ -79,22 +79,26 @@ const StoryForm = () => {
   };
 
   const publishStory = async () => {
-    const { fullDate, numberDate } = dateFunc();
-    const newStory = {
-      uid: user!.uid,
-      title: title,
-      date: fullDate,
-      dateNum: numberDate,
-      favorite: false,
-      story: story,
-      upvotes: { up: [], down: [] },
-      public: publicSelected,
-      author: authorSelect ?? "",
-      displayName: user?.displayName ?? "user didn't have display name",
-      comments: [],
-    };
-    await postNewStory(newStory);
-    await getAndSetAllThreeStates();
+    if (user) {
+      const { fullDate, numberDate } = dateFunc();
+      const newStory = {
+        uid: user!.uid,
+        title: title,
+        date: fullDate,
+        dateNum: numberDate,
+        favorite: false,
+        story: story,
+        upvotes: { up: [], down: [] },
+        public: publicSelected,
+        author: authorSelect ?? "",
+        displayName: user?.displayName ?? "user didn't have display name",
+        comments: [],
+      };
+      await postNewStory(newStory);
+      await getAndSetAllThreeStates();
+    } else {
+      alert("please log in to publish a story!");
+    }
   };
 
   const addTitleMsg = () => {
