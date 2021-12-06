@@ -40,7 +40,7 @@ const PublicStories = () => {
       ))}
       <div className="bottom-links">
         {user && (
-          <Link to="/#top" className="public-link">
+          <Link to="/" className="public-link">
             View Your Stories
           </Link>
         )}

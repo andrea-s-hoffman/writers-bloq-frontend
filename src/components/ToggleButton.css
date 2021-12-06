@@ -1,0 +1,33 @@
+.ToggleButton {
+  margin: 0 40px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+
+.ToggleButton .toggle-button {
+  width: 50px;
+  background-color: #c4c4c4;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 20px;
+  height: 30px;
+  position: relative;
+}
+
+.ToggleButton .dialog-button {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: rgb(51, 17, 204);
+  transition: all 0.3s ease;
+}
+
+.ToggleButton .disabled {
+  left: 0;
+}

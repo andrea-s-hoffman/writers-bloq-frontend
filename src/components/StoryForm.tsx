@@ -7,6 +7,7 @@ import { postNewStory } from "../services/storyService";
 import StoryContext from "../context/storyContext";
 import AuthContext from "../context/authContext";
 import { dateFunc } from "../functions/dateFunc";
+import ToggleButton from "./ToggleButton";
 // import UserInput from "./UserInput";
 
 const StoryForm = () => {
@@ -261,21 +262,10 @@ const StoryForm = () => {
               {publishErrorMsg && (
                 <div className="publish-error-msg">{publishErrorMsg}</div>
               )}
-              <div className="toggle-container">
-                <div
-                  className="toggle-button"
-                  onClick={() => setPublicSelected((prev) => !prev)}
-                >
-                  <div
-                    className={`dialog-button ${
-                      publicSelected ? "" : "disabled"
-                    }`}
-                  ></div>
-                </div>
-                <p className="privacy-selection">
-                  {publicSelected ? "public" : "private"}
-                </p>
-              </div>
+              <ToggleButton
+                publicSelected={publicSelected}
+                setPublicSelected={setPublicSelected}
+              />
               {title && story ? (
                 <Link to="/">
                   <button className="publish-button" onClick={publishStory}>
